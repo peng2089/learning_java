@@ -354,7 +354,9 @@ for (int i = 0; i < localeList.length; i++) {
 ```
 
 ### 程序国际化
+
 1. 创建翻译文件
+
 ```java
 // 第一个文件：mess.properties
 # 资源文件的内容是key-value对
@@ -365,12 +367,14 @@ hello=你好！
 hello=Welcome You!
 ```
 2. 对于包含非西欧字符的资源文件，Java提供一个工具来处理：native2ascii。
+
 ```shell
 native2ascii 资源文件 目的资源文件
 
 native2ascii mess.properties mess_zh_CN.properties
 ```
 3. 程序编码
+
 ```java
 // 取得系统默认的国家/语言环境
 Locale myLocale = Locale.getDefault(Locale.Category.FORMAT);
