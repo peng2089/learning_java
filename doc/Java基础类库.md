@@ -412,5 +412,47 @@ public class myMess_zh_CN extends ListResourceBundle {
 以上文件可以代替myMess_zh_CN.properties文件。
 如果系统同时存在资源文件、类文件，系统将以类文件为主，不会调用资源文件。
 
+### 使用NumberFormat格式化数字
+NumberForamt：
+1. getCurrencyInstance()：返回默认Locale的货币格式器。也可以在调用该方法时时传入指定Locale，则获取指定Locale的货币格式器。
+2. getIntegerInstance()：返回默认Locale的整数格式器。也可以在调用该方法时传入指定的Locale，则获取指定Locale的整数格式器。
+3. getNumberInstance()：返回默认Locale的通用数值格式器。也可以在调用该方法时传入指定Locale，则获取指定Locale的通用数值格式器。
+4. getPercentInstance()：返回默认Locale的百分数格式器。也可以在调用该方法时传入指定Locale，则获取指定Locale的百分数格式器。
+
+```java
+// 需要被格式化的数字
+double d = 1234000.567;
+
+// 通用数值格式器
+NumberFormat n = NumberFormat.getNumberInstance(Locale.CHINA);
+// 百分数格式器
+NumberFormat n2 = NumberFormat.getPercentInstance(Locale.CHINA);
+// 货币格式器
+NumberFormat n3 = NumberFormat.getCurrencyInstance(Locale.CHINA);
+
+System.out.println("通用数值格式：" + n.format(d));
+System.out.println("百分数格式器：" + n2.format(d));
+System.out.println("货币格式器：" + n3.format(d));
+```
+### 使用DateFormat格式化日期、时间
+1. getDateInstance()：返回一个日期格式器，它格式化后的字符串只有日期，没有时间。该方法可以传入多个参数，用于指定日期样式和Locale等参数；如不指定参数，则使用默认参数。
+2. getTimeInstance()：返回一个时间格式器，它格式化后的字符串只有时间，没有日期。该方法可以穿入多个参数，用于指定时间样式和Locale等参数；如不指定参数，则使用默认参数。
+3. getDateTimeInstance()：返回一个日期、时间格式器，它格式化后的字符串既有日期，又有时间。该方法可以传入多个参数，用于指定日期样式、时间样式和Locale等参数；如不指定参数，则使用默认参数
+
+```java
+Date d = new Date();
+// 日期样式、时间样式参数常量：FULL、LONG、MEDIUM、SHORT
+DateFormat d1 = DateFormat.getDateInstance(SHORT, Locale.CHINA);
+
+System.out.println("SHORT格式器：" + d1.format(d));
+```
+
+### 使用SImpleDateFormat格式化日期
+```java
+Date d = new Date();
+SimpleDateFormat sd1 = new SimpleDateFormat("Gyyyy年中的第D天");
+String dateStr = sd1.format(d); // output: 公元2014年中的第100天
+```
+
 ## 7.7 Java8新增的日期、时间格式器
 
